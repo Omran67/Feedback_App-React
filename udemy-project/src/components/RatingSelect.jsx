@@ -3,10 +3,9 @@ import {useState} from 'react';
 function RatingSelect({select}) {
     const [selected, setSelected] = useState(6);
 
-    const handleChange = (e) =>{
+    const handleChange= (e) =>{
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
-        
     }
     return(
        <ul className='rating'>
@@ -53,7 +52,7 @@ function RatingSelect({select}) {
                    name='rating'
                    value='4'
                    onChange={handleChange}
-                   checked={selected === 1 }
+                   checked={selected === 4 }
                />
 
                <label htmlFor='num1'>4</label>

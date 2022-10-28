@@ -1,4 +1,6 @@
-import FeedbackItem from './FeedbackItem'
+import FeedbackItem from './FeedbackItem';
+import PropType from 'prop-types';
+import {motion, AnimatePresence} from 'framer-motion'
 
 function FeedbackList({feedback, hadeleDelete}) {
     if (!feedback || feedback.length === 0) {
@@ -6,9 +8,18 @@ function FeedbackList({feedback, hadeleDelete}) {
     }
     return(
         <div className='feedback-list'>
-            {feedback.map((item)=>(
+            <AnimatePresence>
+                {feedback.map((item)=>(
+                <motion.div key = {item.id}
+                    key={item.id}
+                    initial = {{opacity: 0}}
+                    animate = {{opacity: 1}}
+                    exit={{opacity:0}}
+                >
                 <FeedbackItem key={item.id} item={item}hadeleDelete={hadeleDelete}/>
+                </motion.div>
             ))}
+            </AnimatePresence>
         </div>
     )
 }
