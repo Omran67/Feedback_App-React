@@ -1,31 +1,31 @@
 import FeedbackItem from './FeedbackItem';
 import {useContext} from 'react';
-import {motion, AnimatePresence} from 'framer-motion'
-import FeedbackContext from '../context/FeedbackContext'
+import {motion, AnimatePresence} from 'framer-motion';
+import FeedbackContext from '../context/FeedbackContext';
+import Spinner from './shared/Spinner'
 
 
 function FeedbackList() {
-    const {feedback} = useContext(FeedbackContext)
+    const {feedback,  isLoading} = useContext(FeedbackContext)
 
-    if (!feedback || feedback.length === 0) {
+    if (!isLoading && (!feedback || feedback.length === 0)) {
         return <p> No feedback yet</p>
     }
-    return(
-        <div className='feedback-list'>
-            <AnimatePresence>
-                {feedback.map((item)=>(
+    return isLoading ? <h3>Loading....</h3> : (<div className='feedback-list'>
+        <AnimatePresence>
+            {feedback.map((item)=>(
                 <motion.div key = {item.id}
-                    key={item.id}
-                    initial = {{opacity: 0}}
-                    animate = {{opacity: 1}}
-                    exit={{opacity:0}}
+                            key={item.id}
+                            initial = {{opacity: 0}}
+                            animate = {{opacity: 1}}
+                            exit={{opacity:0}}
                 >
-                <FeedbackItem key={item.id} item={item}/>
+                    <FeedbackItem key={item.id} item={item}/>
                 </motion.div>
             ))}
-            </AnimatePresence>
-        </div>
-    )
+        </AnimatePresence>
+    </div>)
+
 }
 
 export default FeedbackList

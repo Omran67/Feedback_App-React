@@ -9,7 +9,7 @@ function RatingSelect({select}) {
 }, [feedbackEdit])
 
     const handleChange = (e) => {
-        //change string to number with +
+
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
     }
